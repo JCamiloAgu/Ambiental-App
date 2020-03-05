@@ -1,4 +1,4 @@
-package com.adsi.ambiental.ui.main
+package com.adsi.ambiental.viewmodel
 
 import android.view.View
 import androidx.lifecycle.MutableLiveData
@@ -18,6 +18,10 @@ class PageViewModel : ViewModel() {
     val radioButtonText4 = MutableLiveData<String>("")
 
     val btnMainText = MutableLiveData<String>("")
+
+    fun loadQuestions(){
+
+    }
 
 
 }

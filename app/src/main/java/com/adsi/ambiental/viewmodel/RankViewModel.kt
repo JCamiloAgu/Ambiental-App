@@ -1,4 +1,4 @@
-package com.adsi.ambiental.ui.main
+package com.adsi.ambiental.viewmodel
 
 import androidx.lifecycle.ViewModel
 

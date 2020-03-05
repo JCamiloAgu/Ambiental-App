@@ -1,4 +1,4 @@
-package com.adsi.ambiental.ui.main
+package com.adsi.ambiental.ui.main.fragments
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.adsi.ambiental.R
+import com.adsi.ambiental.viewmodel.RankViewModel
 
 class RankFragment : Fragment() {
 
