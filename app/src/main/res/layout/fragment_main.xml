@@ -21,13 +21,13 @@
             android:id="@+id/txtMain"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="64dp"
+            android:layout_marginTop="32dp"
             android:text="@{viewmodel.textMain}"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/progressBar" />
 
         <Button
             android:id="@+id/btnAction"
@@ -46,21 +46,20 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="16dp"
             android:text="@{viewmodel.textDescription}"
-            app:layout_constraintBottom_toTopOf="@+id/btnAction"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtMain" />
 
         <RadioGroup
+            android:id="@+id/rg"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="16dp"
-            android:id="@+id/rg"
             android:layout_marginEnd="16dp"
             android:visibility="@{viewmodel.isVisibleRadioGroup}"
-            app:layout_constraintBottom_toTopOf="@+id/btnAction"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtDescription">
@@ -68,13 +67,13 @@
 
             <RadioButton
                 android:id="@+id/rbAnswer1"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@{viewmodel.radioButtonText1}" />
 
             <RadioButton
                 android:id="@+id/rbAnswer2"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@{viewmodel.radioButtonText2}" />
 
@@ -90,6 +89,19 @@
                 android:layout_height="wrap_content"
                 android:text="@{viewmodel.radioButtonText4}" />
         </RadioGroup>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:indeterminate="false"
+            android:max="200"
+            android:progress="@{viewmodel.progress}"
+            android:visibility="@{viewmodel.isVisibleProgressBar}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

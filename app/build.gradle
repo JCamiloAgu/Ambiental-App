@@ -28,6 +28,12 @@ android {
     }
 }
 
+sourceSets {
+    main {
+        java.srcDirs += 'build/generated/data_binding_base_class_source_out/debug/out'
+    }
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"

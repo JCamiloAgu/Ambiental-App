@@ -1,8 +1,6 @@
 package com.adsi.ambiental.ui.main.fragments
 
-import android.animation.ObjectAnimator
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,14 +8,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.adsi.ambiental.R
 import com.adsi.ambiental.databinding.FragmentMainBinding
-import com.adsi.ambiental.viewmodel.PageViewModel
 import com.adsi.ambiental.repository.PlayRepository
-import kotlinx.android.synthetic.main.fragment_main.*
+import com.adsi.ambiental.viewmodel.PageViewModel
 
 class PlayFragment : Fragment() {
 
     private lateinit var pageViewModel: PageViewModel
     private lateinit var binding: FragmentMainBinding
+    private lateinit var root: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,22 +29,14 @@ class PlayFragment : Fragment() {
         setUpBinding(inflater, container)
         setUpDependencies()
 
-        val root = binding.root
+        root = binding.root
 
         setUpTextIntoLayout()
         setUpOnClickListeners()
 
-        //TODO -- Probar que valores me imprime
-        Log.d("DATA", pageViewModel.questions.toString())
-
-        //TODO -- Probar esta animación
-        rg.visibility = View.VISIBLE
-        val anim = ObjectAnimator.ofFloat(rg, "alpha", 0f, 1f)
-        anim.duration = 1000
-        anim.start()
-
         return root
     }
+
 
     private fun setUpBinding(inflater: LayoutInflater, container: ViewGroup?) {
         binding = FragmentMainBinding.inflate(inflater, container, false)
@@ -59,6 +49,8 @@ class PlayFragment : Fragment() {
             pageViewModel.apply {
                 isVisibleRadioGroup.value = View.VISIBLE
                 btnMainText.value = getString(R.string.next)
+                playProgressBar()
+                isVisibleProgressBar.value = View.VISIBLE
             }
         }
     }
@@ -69,7 +61,7 @@ class PlayFragment : Fragment() {
         pageViewModel.btnMainText.value = getString(R.string.btn_start)
     }
 
-    private fun setUpDependencies(){
+    private fun setUpDependencies() {
         val repository = PlayRepository()
         pageViewModel.repository = repository
     }
