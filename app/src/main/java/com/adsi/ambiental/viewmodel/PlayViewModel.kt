@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel
 import com.adsi.ambiental.models.Questions
 import com.adsi.ambiental.repository.PlayRepository
 
-class PageViewModel : ViewModel() {
+class PlayViewModel : ViewModel() {
 
     // Repository
     lateinit var repository: PlayRepository
@@ -22,14 +22,17 @@ class PageViewModel : ViewModel() {
     val textDescription = MutableLiveData("")
 
     //RG Visibility
-    val isVisibleRadioGroup = MutableLiveData(View.GONE)
+    val visibilityRadioGroup = MutableLiveData(View.GONE)
 
     //Progress Bar Properties
-    val isVisibleProgressBar = MutableLiveData(View.GONE)
+    val visibilityProgressBar = MutableLiveData(View.GONE)
     private val _progress = MutableLiveData(200)
     val progress = _progress
 
     private var countDownTimer: CountDownTimer? = null
+
+    //Img visibility
+    val visibilityImg = MutableLiveData(View.GONE)
 
 
     //RB text

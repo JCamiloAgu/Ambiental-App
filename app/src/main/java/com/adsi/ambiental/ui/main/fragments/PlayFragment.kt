@@ -9,18 +9,17 @@ import androidx.lifecycle.ViewModelProvider
 import com.adsi.ambiental.R
 import com.adsi.ambiental.databinding.FragmentMainBinding
 import com.adsi.ambiental.repository.PlayRepository
-import com.adsi.ambiental.viewmodel.PageViewModel
-import kotlinx.android.synthetic.main.item_ranking.view.*
+import com.adsi.ambiental.viewmodel.PlayViewModel
 
 class PlayFragment : Fragment() {
 
-    private lateinit var pageViewModel: PageViewModel
+    private lateinit var pageViewModel: PlayViewModel
     private lateinit var binding: FragmentMainBinding
     private lateinit var root: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        pageViewModel = ViewModelProvider(this).get(PageViewModel::class.java)
+        pageViewModel = ViewModelProvider(this).get(PlayViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -49,10 +48,10 @@ class PlayFragment : Fragment() {
     private fun setUpOnClickListeners() {
         binding.btnAction.setOnClickListener {
             pageViewModel.apply {
-                isVisibleRadioGroup.value = View.VISIBLE
+                visibilityRadioGroup.value = View.VISIBLE
                 btnMainText.value = getString(R.string.next)
                 playProgressBar()
-                isVisibleProgressBar.value = View.VISIBLE
+                visibilityProgressBar.value = View.VISIBLE
             }
         }
     }
