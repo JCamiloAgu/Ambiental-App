@@ -6,9 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.adsi.ambiental.R
+import com.adsi.ambiental.adapters.RecyclerAdapterRanking
 import com.adsi.ambiental.viewmodel.RankViewModel
+import kotlinx.android.synthetic.main.rank_fragment.*
+import kotlinx.android.synthetic.main.rank_fragment.view.*
 
 class RankFragment : Fragment() {
 
@@ -22,13 +26,19 @@ class RankFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.rank_fragment, container, false)
+        val root = inflater.inflate(R.layout.rank_fragment, container, false)
+
+        return root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(RankViewModel::class.java)
         // TODO: Use the ViewModel
+        val adapter = RecyclerAdapterRanking(context!!)
+        rcViewRanking.adapter = adapter
+        rcViewRanking.layoutManager = LinearLayoutManager(context!!)
+        rcViewRanking.setHasFixedSize(true)
     }
 
 }

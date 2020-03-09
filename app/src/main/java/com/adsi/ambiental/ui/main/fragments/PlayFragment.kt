@@ -10,6 +10,7 @@ import com.adsi.ambiental.R
 import com.adsi.ambiental.databinding.FragmentMainBinding
 import com.adsi.ambiental.repository.PlayRepository
 import com.adsi.ambiental.viewmodel.PageViewModel
+import kotlinx.android.synthetic.main.item_ranking.view.*
 
 class PlayFragment : Fragment() {
 
@@ -33,6 +34,7 @@ class PlayFragment : Fragment() {
 
         setUpTextIntoLayout()
         setUpOnClickListeners()
+
 
         return root
     }
