@@ -10,6 +10,7 @@ import com.adsi.ambiental.repository.PlayRepository
 
 class PlayViewModel : ViewModel() {
 
+
     // Repository
     lateinit var repository: PlayRepository
 
@@ -29,7 +30,7 @@ class PlayViewModel : ViewModel() {
     private val _progress = MutableLiveData(200)
     val progress = _progress
 
-    private var countDownTimer: CountDownTimer? = null
+    var countDownTimer: CountDownTimer? = null
 
     //Img visibility
     val visibilityImg = MutableLiveData(View.GONE)
@@ -66,6 +67,7 @@ class PlayViewModel : ViewModel() {
         }
     }
 
+
     //Load Data
 //    private fun loadQuestions(): ArrayList<Answers>? = repository.loadQuestions()
     private fun loadQuestions(): ArrayList<Questions>? =
@@ -79,6 +81,5 @@ class PlayViewModel : ViewModel() {
                 updateAt = "hoy"
             )
         )
-
 
 }
