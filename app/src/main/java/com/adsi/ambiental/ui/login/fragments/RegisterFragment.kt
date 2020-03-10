@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.adsi.ambiental.R
 import com.adsi.ambiental.RegisterViewModel
+import kotlinx.android.synthetic.main.register_fragment.view.*
 
 
 class RegisterFragment : Fragment() {
@@ -23,7 +24,11 @@ class RegisterFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.register_fragment, container, false)
+        val root = inflater.inflate(R.layout.register_fragment, container, false)
+        root.imgBtnBack.setOnClickListener {
+            activity?.onBackPressed()
+        }
+        return root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -31,5 +36,7 @@ class RegisterFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(RegisterViewModel::class.java)
         // TODO: Use the ViewModel
     }
+
+
 
 }
