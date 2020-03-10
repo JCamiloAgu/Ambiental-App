@@ -15,8 +15,7 @@
             app:destination="@id/registerFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:launchSingleTop="false"
-            app:popEnterAnim="@anim/nav_default_exit_anim"
-            app:popUpToInclusive="false" />
+            app:popExitAnim="@anim/nav_default_exit_anim" />
         <action
             android:id="@+id/action_signInFragment_to_mainActivity"
             app:destination="@id/mainActivity"
