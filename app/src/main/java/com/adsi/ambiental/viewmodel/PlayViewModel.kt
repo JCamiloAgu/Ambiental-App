@@ -1,28 +1,37 @@
 package com.adsi.ambiental.viewmodel
 
+import android.app.Application
+import android.graphics.drawable.Drawable
 import android.os.CountDownTimer
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
+import androidx.databinding.BindingAdapter
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.adsi.ambiental.R
+import com.adsi.ambiental.models.Answers
 import com.adsi.ambiental.models.Questions
 import com.adsi.ambiental.repository.PlayRepository
 
-class PlayViewModel : ViewModel() {
 
+class PlayViewModel : ViewModel() {
 
     // Repository
     lateinit var repository: PlayRepository
 
-    private val _questions = MutableLiveData<ArrayList<Questions>>(loadQuestions())
+    private val questions  by lazy { loadQuestions()!!}
+    private val answers: ArrayList<List<Answers>> by lazy { loadAnswers()!! }
 
-    val questions = _questions
+    private lateinit var question: Questions
+    private var answer: MutableList<Answers> = mutableListOf()
 
     //TextViews
     val textMain = MutableLiveData("")
     val textDescription = MutableLiveData("")
 
-    //RG Visibility
+    //RadioGroup Visibility
     val visibilityRadioGroup = MutableLiveData(View.GONE)
 
     //Progress Bar Properties
@@ -32,9 +41,20 @@ class PlayViewModel : ViewModel() {
 
     var countDownTimer: CountDownTimer? = null
 
-    //Img visibility
+    //Img properties
     val visibilityImg = MutableLiveData(View.GONE)
+    val imageDrawable = MutableLiveData<Drawable>(null)
 
+
+    @BindingAdapter("android:src")
+    fun setImageDrawable(view: ImageView, drawable: Drawable?) {
+        view.setImageDrawable(drawable)
+    }
+
+    @BindingAdapter("android:src")
+    fun setImageResource(imageView: ImageView, resource: Int) {
+        imageView.setImageResource(resource)
+    }
 
     //RB text
     val radioButtonText1 = MutableLiveData("")
@@ -42,8 +62,15 @@ class PlayViewModel : ViewModel() {
     val radioButtonText3 = MutableLiveData("")
     val radioButtonText4 = MutableLiveData("")
 
-    //Btn text
-    val btnMainText = MutableLiveData("")
+    //Button action properties
+    val btnActionText = MutableLiveData("")
+    val btnActionIsEnable = MutableLiveData(true)
+
+    //Load Data
+    private fun loadQuestions(): ArrayList<Questions>? = repository.loadQuestions()
+    private fun loadAnswers(): ArrayList<List<Answers>>? = repository.loadAnswers()
+
+    var questionIndex = 0
 
     fun playProgressBar() {
         _progress.value = 200
@@ -67,19 +94,44 @@ class PlayViewModel : ViewModel() {
         }
     }
 
+    fun loadQuestion() {
+        val question = questions[questionIndex]
 
-    //Load Data
-//    private fun loadQuestions(): ArrayList<Answers>? = repository.loadQuestions()
-    private fun loadQuestions(): ArrayList<Questions>? =
-        arrayListOf(
-            Questions(
-                id = 1,
-                image = "",
-                description = "Hola desde descripcion",
-                isActive = true,
-                createdAt = "hoy",
-                updateAt = "hoy"
-            )
-        )
+        var iterator = 1
+        answers.forEach {
+            it.forEach { mAnswers ->
+                if(mAnswers.idQuestion == question.id){
+                    mAnswers.description.apply {
+                        when (iterator){
+                            1 -> radioButtonText1.value = this
+                            2 -> radioButtonText2.value = this
+                            3 -> radioButtonText3.value = this
+                            4 -> radioButtonText4.value = this
+                        }
+                    }
+                    answer.add(mAnswers)
+                    iterator ++
+                }
+
+            }
+        }
+        textDescription.value = question.description
+        textMain.value = "PREGUNTA ${question.id}"
+
+        questionIndex ++
+    }
+
+    fun validateAnswer(i: Int) {
+        when (i){
+            1 -> {
+                if(answer[i].isCorrect){
+
+                }
+            }
+        }
+    }
+
+
+
 
 }

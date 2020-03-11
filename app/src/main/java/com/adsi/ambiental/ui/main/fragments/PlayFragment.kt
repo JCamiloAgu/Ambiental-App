@@ -13,7 +13,9 @@ import com.adsi.ambiental.databinding.FragmentMainBinding
 import com.adsi.ambiental.repository.PlayRepository
 import com.adsi.ambiental.viewmodel.PlayViewModel
 import com.google.android.material.button.MaterialButton
+import kotlinx.android.synthetic.main.fragment_main.*
 import kotlinx.android.synthetic.main.fragment_main.view.*
+import kotlinx.android.synthetic.main.fragment_main.view.rbAnswer1
 
 class PlayFragment : Fragment() {
 
@@ -62,6 +64,9 @@ class PlayFragment : Fragment() {
                         else {
                             playViewModel.visibilityImg.value = View.GONE
                             playViewModel.playProgressBar()
+                            playViewModel.btnActionIsEnable.value = true
+                            playViewModel.loadQuestion()
+                            root.rbAnswer1.isChecked = true
                         }
                     }
                 })
@@ -79,14 +84,16 @@ class PlayFragment : Fragment() {
         binding.btnAction.setOnClickListener {
             playViewModel.apply {
                 visibilityRadioGroup.value = View.VISIBLE
-                btnMainText.value = getString(R.string.next)
+                btnActionText.value = getString(R.string.next)
                 visibilityProgressBar.value = View.VISIBLE
 
                 if ((it as MaterialButton).text.toString() == getString(R.string.next)) {
-                    playViewModel.countDownTimer!!.cancel()
+                    countDownTimer!!.cancel()
+                    btnActionIsEnable.value = false
+                    validateAnswers()
                     animateImage(false)
                 } else {
-                    loadOneQuestion()
+                    loadQuestion()
                     playProgressBar()
                 }
             }
@@ -94,17 +101,18 @@ class PlayFragment : Fragment() {
     }
 
 
-    private fun loadOneQuestion() {
-        val question = playViewModel.questions.value?.get(0)
-        playViewModel.textDescription.value = question?.description
-        playViewModel.textMain.value = "PREGUNTA ${question?.id}"
+    private fun validateAnswers()
+    {
+        if(rbAnswer1.isChecked){
+            playViewModel.validateAnswer(1)
+        }
 
     }
 
     private fun setUpTextIntoLayout() {
         playViewModel.textMain.value = getString(R.string.txt_main)
         playViewModel.textDescription.value = getString(R.string.loremp)
-        playViewModel.btnMainText.value = getString(R.string.btn_start)
+        playViewModel.btnActionText.value = getString(R.string.btn_start)
     }
 
     private fun setUpDependencies() {

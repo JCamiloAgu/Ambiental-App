@@ -31,12 +31,13 @@
 
         <Button
             android:id="@+id/btnAction"
+            android:enabled="@{viewmodel.btnActionIsEnable}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="32dp"
-            android:text="@{viewmodel.btnMainText}"
+            android:text="@{viewmodel.btnActionText}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -69,6 +70,7 @@
                 android:id="@+id/rbAnswer1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:checked="true"
                 android:text="@{viewmodel.radioButtonText1}" />
 
             <RadioButton
@@ -78,13 +80,13 @@
                 android:text="@{viewmodel.radioButtonText2}" />
 
             <RadioButton
-                android:id="@+id/radioButton3"
+                android:id="@+id/rbAnswer3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@{viewmodel.radioButtonText3}" />
 
             <RadioButton
-                android:id="@+id/radioButton4"
+                android:id="@+id/rbAnswer4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@{viewmodel.radioButtonText4}" />
@@ -116,7 +118,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rg"
             app:layout_constraintVertical_bias="1.0"
-            app:srcCompat="@drawable/ic_check" />
+            android:src="@drawable/ic_check"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
