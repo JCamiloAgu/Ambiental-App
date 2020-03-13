@@ -24,7 +24,7 @@
             android:layout_marginTop="32dp"
             android:text="@{viewmodel.textMain}"
             android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/progressBar" />
@@ -47,9 +47,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="64dp"
             android:layout_marginEnd="16dp"
             android:text="@{viewmodel.textDescription}"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtMain" />
@@ -60,6 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
+            android:layout_marginTop="12dp"
             android:visibility="@{viewmodel.visibilityRadioGroup}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -70,7 +72,6 @@
                 android:id="@+id/rbAnswer1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:checked="true"
                 android:text="@{viewmodel.radioButtonText1}" />
 
             <RadioButton
@@ -109,16 +110,16 @@
             android:id="@+id/imgViewAnswerStatus"
             android:layout_width="128dp"
             android:layout_height="128dp"
+            android:contentDescription="Answer status"
             android:layout_marginTop="252dp"
             android:layout_marginBottom="32dp"
+            android:src="@{viewmodel.imageDrawable, default=@drawable/ic_check}"
             android:visibility="@{viewmodel.visibilityImg}"
             app:layout_constraintBottom_toTopOf="@+id/btnAction"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.533"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rg"
-            app:layout_constraintVertical_bias="1.0"
-            android:src="@drawable/ic_check"/>
-
+            app:layout_constraintVertical_bias="1.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
